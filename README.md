@@ -5,6 +5,8 @@ __Table of Contents__
 2. [Instalação](#2-instalação)
 3. [Sintaxe](#3-sintaxe)
 4. [Exemplos](#4-exemplos)
+    1. [PIB per capita dos municípios brasileiros](#41-PIB-per-capita-dos-municípios-brasileiros)
+    2. [Nota média do IDESP 2019](#42-nota-média-do-IDESP-2019)
 
 # 1. Introdução
 
@@ -15,7 +17,7 @@ O pacote basedosdados no Stata possibilita o acesso a mais de 70 bancos de dados
 
 A instalação do pacote `basedosdados` no Stata consiste basicamente na execução desses 2 passos: 
 1. Garantir que seu Stata seja a versão 16+
-2. Garantir que o Python esteja instalado no seu computador - você pode se guiar pelo nosso Mini Tutorial de Python aqui https://github.com/basedosdados/mais/issues/1159). Nesse tutorial você também vai descobrir como autenticar seu projeto pelo prompt do seu computador (muito importante!).
+2. Garantir que o Python esteja instalado no seu computador - você pode se guiar pelo nosso Mini Tutorial de Python aqui https://github.com/basedosdados/mais/issues/1159). Nesse tutorial você também vai descobrir como autenticar seu projeto pelo prompt do seu computador (> <img src="examples/attention.png" width="20px" height="20px"  align="left" hspace="0" vspace="0"> muito importante!).
 
 Obs: Caso esteja utilizando os dados da BD pela primeira vez, é necessário criar um projeto para que você possa fazer as queries no nosso repositório. Ter um projeto é de graça e basta ter uma conta Google (seu gmail por exemplo). [Veja aqui como criar um projeto no Google Cloud (https://basedosdados.github.io/mais/access_data_local/#criando-um-projeto-no-google-cloud).
 
@@ -50,8 +52,37 @@ help [comando]
 ```
 
 # 4. Exemplos
+## 4.1 PIB per capita dos municípios brasileiros
 
+```python
+cd "C:/Users/isabe/OneDrive/Documentos/GitHub/mais/stata-package/testes/" // defina a pasta onde serão salvos os arquivos
+
+bd_read_sql, path("~/Downloads/PIB.csv") query("SELECT pib.id_municipio, pop.ano, pib.PIB / pop.populacao as pib_pc FROM `basedosdados.br_ibge_pib.municipio` as pib INNER JOIN `basedosdados.br_ibge_populacao.municipio` as pop ON pib.id_municipio = pop.id_municipio AND pib.ano = pop.ano") billing_project_id("monografia-12061998")
+
+keep if ano == 2018
+tempfile v
+save `v'
+
+*ANÁLISE
+
+use dadosmapa/brasildata.dta, clear
+cap rename CD_GEOCODI id_municipio
+cap rename CD_GEOCODM id_municipio 
+cap rename CD_GEOCODS id_municipio 
+destring id_municipio, replace
+merge 1:1 id_municipio using `v', keep(3)
+
+colorpalette w3 green, n(5) nograph
+local colors `r(p)'
+
+*MAPA
+spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(black ..) osize(0.0 ..) fcolor("`colors'") ///
+  legend(pos(7) size(*1)) legstyle(2) title("Mapa PIB per capita por municípios 2018", size(small)) ///
+   note("Data source: Base dos Dados." , size(tiny)) 
+```
 <p align="center">
+    <a href="https://github.com/basedosdados/stata-package/examples/m2018-1.png">
     <img src="examples/m2018-1.png" width="450" alt="Base dos Dados Mais">
+    </a>
 </p>
 
