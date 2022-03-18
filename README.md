@@ -54,7 +54,7 @@ help [comando]
 # 4. Exemplos
 ## 4.1 PIB per capita dos municípios brasileiros
 
-```stata
+```R
 cd "C:/Users/isabe/OneDrive/Documentos/GitHub/mais/stata-package/testes/" // defina a pasta onde serão salvos os arquivos
 
 bd_read_sql, path("~/Downloads/PIB.csv") query("SELECT pib.id_municipio, pop.ano, pib.PIB / pop.populacao as pib_pc FROM `basedosdados.br_ibge_pib.municipio` as pib INNER JOIN `basedosdados.br_ibge_populacao.municipio` as pop ON pib.id_municipio = pop.id_municipio AND pib.ano = pop.ano") billing_project_id("monografia-12061998")
