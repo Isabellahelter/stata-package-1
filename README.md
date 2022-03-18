@@ -64,9 +64,9 @@ keep if ano == 2018
 tempfile v
 save `v'
 ```
-*mais sobre fazer mapas no stata em: <a href=https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269></a>
 
 ```stata
+*** TRATAMENTO E ANÁLISE ***
 use dadosmapa/brasildata.dta, clear
 cap rename CD_GEOCODI id_municipio
 cap rename CD_GEOCODM id_municipio 
@@ -74,7 +74,7 @@ cap rename CD_GEOCODS id_municipio
 destring id_municipio, replace
 merge 1:1 id_municipio using `v', keep(3)
 
-colorpalette w3 green, n(5) nograph // paleta
+colorpalette w3 green, n(5) nograph // paleta 
 local colors `r(p)'
 
 *** MAPA ***
@@ -82,6 +82,8 @@ spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bla
   legend(pos(7) size(*1)) legstyle(2) title("Mapa PIB per capita por municípios 2018", size(small)) ///
    note("Data source: Base dos Dados." , size(tiny)) 
 ```
+
+*mais sobre fazer mapas no stata [aqui](https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269).
 <p align="center">
     <a href="https://github.com/basedosdados/stata-package/blob/main/examples/m2018-1.png">
     <img src="examples/m2018-1.png" width="450" alt="Base dos Dados Mais">
