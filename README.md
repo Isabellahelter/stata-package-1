@@ -63,10 +63,10 @@ bd_read_sql, path("~/Downloads/PIB.csv") query("SELECT pib.id_municipio, pop.ano
 keep if ano == 2018
 tempfile v
 save `v'
+```
+*mais sobre fazer mapas no stata em: <a href=https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269></a>
 
-*** TRATAMENTO ***
-*mais como fazer mapas no stata em: <a href=https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269></a>
-
+```stata
 use dadosmapa/brasildata.dta, clear
 cap rename CD_GEOCODI id_municipio
 cap rename CD_GEOCODM id_municipio 
