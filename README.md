@@ -52,8 +52,6 @@ help [comando]
 # 4. Exemplos
 
 <p align="center">
-  <a href="https://basedosdados.org">
-    <img src="examples/m2018-1.png" width="340" alt="Base dos Dados Mais">
-  </a>
+    <img src="examples/m2018-1.png" width="450" alt="Base dos Dados Mais">
 </p>
 
