@@ -115,7 +115,7 @@ spmap nota_em using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bl
 ```
 
 <p align="center">
-    <a href="https://github.com/basedosdados/stata-package/blob/main/examples/idesp_2019.png">
-    <img src="examples/idesp_2019.png" width="450" alt="Base dos Dados Mais">
+    <a href="https://github.com/basedosdados/stata-package/blob/main/examples/idesp_mapa.png">
+    <img src="examples/idesp_mapa.png" width="450" alt="Base dos Dados Mais">
     </a>
 </p>
