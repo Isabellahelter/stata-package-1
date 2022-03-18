@@ -53,7 +53,7 @@ help [comando]
 
 <p align="center">
   <a href="https://basedosdados.org">
-    <img src="examples/m2018.pdf" width="340" alt="Base dos Dados Mais">
+    <img src="examples/m2018-1.png" width="340" alt="Base dos Dados Mais">
   </a>
 </p>
 
