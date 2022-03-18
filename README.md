@@ -19,7 +19,7 @@ A instalação do pacote `basedosdados` no Stata consiste basicamente na execuç
 1. Garantir que seu Stata seja a versão 16+
 2. Garantir que o Python esteja instalado no seu computador - você pode se guiar pelo nosso Mini Tutorial de Python aqui https://github.com/basedosdados/mais/issues/1159). Nesse tutorial você também vai descobrir como autenticar seu projeto pelo prompt do seu computador (> <img src="examples/attention.png" width="20px" height="20px"  align="left" hspace="0" vspace="0"> muito importante!).
 
-Obs: Caso esteja utilizando os dados da BD pela primeira vez, é necessário criar um projeto para que você possa fazer as queries no nosso repositório. Ter um projeto é de graça e basta ter uma conta Google (seu gmail por exemplo). [Veja aqui como criar um projeto no Google Cloud (https://basedosdados.github.io/mais/access_data_local/#criando-um-projeto-no-google-cloud).
+Obs: Caso esteja utilizando os dados da BD pela primeira vez, é necessário criar um projeto para que você possa fazer as queries no nosso repositório. Ter um projeto é de graça e basta ter uma conta Google (seu gmail por exemplo). [Veja aqui como criar um projeto no Google Cloud](https://basedosdados.github.io/mais/access_data_local/#criando-um-projeto-no-google-cloud).
 
 Após garantir esses dois requerimentos, você pode finalmente instalar o pacote digitando o seguinte comando no seu Stata: 
 
