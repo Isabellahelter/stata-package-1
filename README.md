@@ -1,4 +1,4 @@
-#Stata Package
+# Stata Package
 
 __Table of Contents__  
 1. [Introdução](#1-introdução)
@@ -50,4 +50,10 @@ help [comando]
 ```
 
 # 4. Exemplos
+
+<p align="center">
+  <a href="https://basedosdados.org">
+    <img src="examples/idesp_mapa.png" width="340" alt="Base dos Dados Mais">
+  </a>
+</p>
 
