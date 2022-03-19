@@ -10,7 +10,7 @@ __Guia__
 
 # 1. Introdução
 
-O pacote basedosdados no Stata possibilita o acesso a mais de 70 bancos de dados brasileiros já limpos e compatibilizados, disponíveis no datalake público BD+ da Base dos Dados. O pacote consiste em 7 comandos. Os comandos dão desde a possibilidade de listar todos os conjuntos de dados disponíveis do BD+ datalake até baixá-los ou analisá-los diretamente do Stata. Importante ressaltar que essa versão inicial pacote ainda é um __wrapper__ do pacote do Python, e, portanto, necessita da execução de alguns passos antes da utilização. 
+O pacote basedosdados no Stata possibilita o acesso a mais de 70 bancos de dados brasileiros já limpos e compatibilizados, disponíveis no datalake público BD+ da Base dos Dados. O pacote consiste em 7 comandos. Os comandos dão desde a possibilidade de listar todos os conjuntos de dados disponíveis do BD+ datalake até baixá-los ou analisá-los diretamente do Stata. Importante ressaltar que essa versão inicial ainda é um __wrapper__ do pacote do Python, e, portanto, necessita da execução de alguns passos antes da utilização. 
 
 
 # 2. Instalação e requerimentos
