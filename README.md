@@ -84,7 +84,7 @@ spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bla
 *Mais sobre fazer mapas no stata [aqui](https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269).
 <p align="center">
     <a href="https://github.com/basedosdados/stata-package/blob/main/examples/m2018-1.png">
-    <img src="examples/m2018-1.png" width="450" alt="Base dos Dados Mais">
+    <img src="examples/m2018-1.png" width="500" alt="Base dos Dados Mais">
     </a>
 </p>
 
@@ -116,6 +116,6 @@ spmap nota_em using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bl
 
 <p align="center">
     <a href="https://github.com/basedosdados/stata-package/blob/main/examples/idesp_mapa.png">
-    <img src="examples/idesp_mapa.png" width="450" alt="Base dos Dados Mais">
+    <img src="examples/idesp_mapa.png" width="500" alt="Base dos Dados Mais">
     </a>
 </p>
