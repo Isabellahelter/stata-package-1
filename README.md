@@ -81,7 +81,7 @@ spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bla
    note("Data source: Base dos Dados." , size(tiny)) 
 ```
 
-*Mais sobre fazer mapas no stata [aqui](https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269).
+:point_right: Mais sobre fazer mapas no stata [aqui](https://medium.com/the-stata-guide/maps-in-stata-ii-fcb574270269).
 <p align="center">
     <a href="https://github.com/basedosdados/stata-package/blob/main/examples/m2018-1.png">
     <img src="examples/m2018-1.png" width="500" alt="Base dos Dados Mais">
