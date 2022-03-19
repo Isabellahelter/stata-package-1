@@ -88,7 +88,7 @@ spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bla
     </a>
 </p>
 
-## 4.2 
+## 4.2 Nota média do IDESP 2019
 
 ```stata
 cd "C:/Users/isabe/OneDrive/Documentos/GitHub/mais/stata-package/testes/" // defina a pasta onde serão salvos os arquivos
