@@ -23,10 +23,9 @@ A instalação do pacote `basedosdados` no Stata consiste basicamente na execuç
 
 Após garantir esses dois requerimentos __obrigatórios__, você pode finalmente instalar o pacote digitando o seguinte comando no seu Stata: 
 
-```
+```stata
 net install github, from("https://haghish.github.io/github/")
 github install basedosdados/stata-package
-
 ```
 
 # 3. Sintaxe
@@ -66,8 +65,8 @@ bd_read_sql, ///
 
 keep if ano == 2018
 
-tempfile v
-save `v'
+tempfile pib_pc
+save `pib_pc'
 
 //------------------------//
 // TRATAMENTO E ANÁLISE
@@ -80,7 +79,7 @@ cap ren CD_GEOCODM id_municipio
 cap ren CD_GEOCODS id_municipio 
 destring id_municipio, replace
 
-merge 1:1 id_municipio using `v', keep(3)
+merge 1:1 id_municipio using `pib_pc', keep(3)
 
 colorpalette w3 green, n(5) nograph // paleta 
 local colors `r(p)'
@@ -110,8 +109,8 @@ bd_read_sql, ///
     query("SELECT id_municipio, AVG(nota_idesp_em) as nota_em FROM `basedosdados.br_sp_seduc_idesp.escola` WHERE ano = 2019 GROUP BY id_municipio") ///
     billing_project_id("<PROJECT_id>")
 
-tempfile v
-save `v', replace 
+tempfile idesp
+save `idesp', replace 
 
 //------------------------//
 // TRATAMENTO E ANÁLISE
@@ -131,7 +130,6 @@ local colors `r(p)'
 spmap nota_em using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(black ..) osize(0.01 ..) fcolor("`colors'")   clmethod(custom) clb(0 2 3 4 5:6 ) ///
   legend(pos(7) size(*1)) legstyle(2) title("Nota Média do IDESP em 2019", size(medium)) ///
    note("Data source: Base dos Dados/SEDUC." , size(tiny)) 
-   
 ```
 
 <p align="center">
