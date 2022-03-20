@@ -1,8 +1,8 @@
-# Stata Package
+# Pacote Stata
 
 __Guia__  
 1. [Introdução](#1-introdução)
-2. [Instalação](#2-instalação)
+2. [Instalação](#2-instalação-e-requerimentos)
 3. [Sintaxe](#3-sintaxe)
 4. [Exemplos](#4-exemplos)
     1. [PIB per capita dos municípios brasileiros](#41-PIB-per-capita-dos-municípios-brasileiros)
@@ -10,7 +10,7 @@ __Guia__
 
 # 1. Introdução
 
-O pacote basedosdados no Stata possibilita o acesso a mais de 70 bancos de dados brasileiros já limpos e compatibilizados, disponíveis no datalake público BD+ da Base dos Dados. O pacote consiste em 7 comandos. Os comandos dão desde a possibilidade de listar todos os conjuntos de dados disponíveis do BD+ datalake até baixá-los ou analisá-los diretamente do Stata. Importante ressaltar que essa versão inicial ainda é um __wrapper__ do pacote do Python, e, portanto, necessita da execução de alguns passos antes da utilização. 
+O pacote `basedosdados` no Stata possibilita o acesso a [centenas de tabelas tratadas e compatibilizadas](https://basedosdados.org/dataset?resource_type=bdm_table), disponíveis no datalake público BD+ da Base dos Dados. O pacote consiste em 7 comandos. Os comandos dão desde a possibilidade de listar todos os conjuntos de dados disponíveis do BD+ datalake até baixá-los ou analisá-los diretamente do Stata. Importante ressaltar que essa versão inicial ainda é um __wrapper__ do pacote do Python, e, portanto, necessita da execução de alguns passos antes da utilização. 
 
 
 # 2. Instalação e requerimentos
@@ -35,15 +35,15 @@ Se é a sua primeira vez utilizando o pacote, digite ```db basedosdados``` e con
 
 O pacote contém 7 comandos, conforme suas funcionalidades descritas abaixo: 
 
-| __Comando__               | __Descrição__                                                                |
-|---------------------------|------------------------------------------------------------------------------|
-| `bd_download`             | baixa dados da Base dos Dados (BD+).                                         |
-| `bd_read_sql`             | baixa tabelas da BD+ usando consultas específicas.                           |
-| `bd_read_table`           | baixa tabelas da BD+ usando dataset_id e table_id.                           |
-| `bd_list_datasets`        | lista o dataset_id dos conjuntos de dados disponíveis em query_project_id.   |
-| `bd_list_dataset_tables`  | lista table_id para tabelas disponíveis no dataset_id especificado.          |
-| `bd_get_table_description`| mostra a descrição completa da tabela BD+.                                   |
-| `bd_get_table_columns`    | mostra os nomes, tipos e descrições das colunas na tabela especificada.      |
+| __Comando__               | __Descrição__                                                                  |
+|---------------------------|--------------------------------------------------------------------------------|
+| `bd_download`             | baixa dados da Base dos Dados (BD+).                                           |
+| `bd_read_sql`             | baixa tabelas da BD+ usando consultas específicas.                             |
+| `bd_read_table`           | baixa tabelas da BD+ usando `dataset_id` e `table_id`.                         |
+| `bd_list_datasets`        | lista o `dataset_id` dos conjuntos de dados disponíveis em `query_project_id`. |
+| `bd_list_dataset_tables`  | lista `table_id` para tabelas disponíveis no `dataset_id` especificado.        |
+| `bd_get_table_description`| mostra a descrição completa da tabela BD+.                                     |
+| `bd_get_table_columns`    | mostra os nomes, tipos e descrições das colunas na tabela especificada.        |
 
 Cada comando tem um __help file__ de apoio, bastando abrir o help e seguir as instruções:
 
@@ -55,21 +55,31 @@ help [comando]
 ## 4.1 PIB per capita dos municípios brasileiros
 
 ```stata
-*** DADOS ***
-cd "C:/Users/isabe/OneDrive/Documentos/GitHub/mais/stata-package/testes/" // defina a pasta onde serão salvos os arquivos
+//------------------------//
+// DADOS
+//------------------------//
 
-bd_read_sql, path("~/Downloads/PIB.csv") query("SELECT pib.id_municipio, pop.ano, pib.PIB / pop.populacao as pib_pc FROM `basedosdados.br_ibge_pib.municipio` as pib INNER JOIN `basedosdados.br_ibge_populacao.municipio` as pop ON pib.id_municipio = pop.id_municipio AND pib.ano = pop.ano") billing_project_id("monografia-12061998")
+bd_read_sql, ///
+    path("pib_pc_municipio.csv") ///
+    query("SELECT pib.id_municipio, pop.ano, pib.PIB / pop.populacao as pib_pc FROM `basedosdados.br_ibge_pib.municipio` as pib INNER JOIN `basedosdados.br_ibge_populacao.municipio` as pop ON pib.id_municipio = pop.id_municipio AND pib.ano = pop.ano") ///
+    billing_project_id("<PROJECT_ID>")
 
 keep if ano == 2018
+
 tempfile v
 save `v'
 
-*** TRATAMENTO E ANÁLISE ***
+//------------------------//
+// TRATAMENTO E ANÁLISE
+//------------------------//
+
 use dadosmapa/brasildata.dta, clear
-cap rename CD_GEOCODI id_municipio
-cap rename CD_GEOCODM id_municipio 
-cap rename CD_GEOCODS id_municipio 
+
+cap ren CD_GEOCODI id_municipio
+cap ren CD_GEOCODM id_municipio 
+cap ren CD_GEOCODS id_municipio 
 destring id_municipio, replace
+
 merge 1:1 id_municipio using `v', keep(3)
 
 colorpalette w3 green, n(5) nograph // paleta 
@@ -91,17 +101,27 @@ spmap pib_pc using brasilcoor.dta, id(id) name(m2019, replace) cln(5) ocolor(bla
 ## 4.2 Nota média do IDESP 2019
 
 ```stata
-cd "C:/Users/isabe/OneDrive/Documentos/GitHub/mais/stata-package/testes/" // defina a pasta onde serão salvos os arquivos
+//------------------------//
+// DADOS
+//------------------------//
 
-*** DADOS ***
-bd_read_sql, path("~/Downloads/SP_2019.csv") query("SELECT id_municipio, AVG(nota_idesp_em) as nota_em FROM `basedosdados.br_sp_seduc_idesp.escola` WHERE ano = 2019 GROUP BY id_municipio") billing_project_id("monografia-12061998") // não esqueça de substituir "monografia-12061998" pelo nome do seu projeto
+bd_read_sql, ///
+    path("~/Downloads/SP_2019.csv") ///
+    query("SELECT id_municipio, AVG(nota_idesp_em) as nota_em FROM `basedosdados.br_sp_seduc_idesp.escola` WHERE ano = 2019 GROUP BY id_municipio") ///
+    billing_project_id("<PROJECT_id>")
+
 tempfile v
 save `v', replace 
 
-*** TRATAMENTO E ANÁLISE ***
+//------------------------//
+// TRATAMENTO E ANÁLISE
+//------------------------//
+
 use dadosmapa/spdata.dta, clear
-rename CD_GEOCODI id_municipio
+
+ren CD_GEOCODI id_municipio
 destring id_municipio, replace
+
 merge 1:1 id_municipio using `v', keep(3)
 
 colorpalette w3 deep-orange, n(5) nograph // paleta de cores 
