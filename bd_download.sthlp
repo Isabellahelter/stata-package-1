@@ -62,5 +62,5 @@ Stata also has other commands for manipulating basedosdados's data; see
 
 {title: Author}
 
-{phang2} Base dos Dados at {browse "https://basedosdados.org/":https://basedosdados.org/}. Email: contato@basedosdados.org.
+{phang2} Base dos Dados at {browse "https://basedosdados.org/":https://basedosdados.org/}. E-mail: rdahis@econ.puc-rio.br or isabellahelter@gmail.com
 {p_end}
