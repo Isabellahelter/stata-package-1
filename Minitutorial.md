@@ -8,7 +8,7 @@ O tutorial é rápido e tem como objetivo mostrar como instalar o Python e autor
 > A meta futura é que o pacote tenha sua dependência no próprio Stata, porém essa primeira versão ainda é um _wrapper_ do pacote do Python. Por outro lado, isso não significa que você precisa saber Python para usá-lo, pelo contrário. Seguindo os passos abaixo, não será necessário nem abrir o software para configurar o pacote do Stata.  
 # 2. Passo a Passo
 
- __Passo 1.__ Clique [aqui](https://www.python.org/downloads/) na opção "Download Python" para baixar o Python. Em seguida, siga as instruções da tela e principalmente, _não esqueça_ de marcar a opção "add to path": 
+ __Passo 1.__ Clique [aqui](https://www.python.org/downloads/) na opção "Download Python" para baixar o Python. Em seguida, siga as instruções da tela e, principalmente, _não esqueça_ de marcar a opção "add to path": 
 
 <p align="left">
     <a href="https://github.com/basedosdados/stata-package/blob/main/examples/python1.png">
