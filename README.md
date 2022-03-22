@@ -24,8 +24,7 @@ A instalação do pacote `basedosdados` no Stata consiste basicamente na execuç
 Após garantir esses dois requerimentos __obrigatórios__, você pode finalmente instalar o pacote digitando o seguinte comando no seu Stata: 
 
 ```stata
-net install github, from("https://haghish.github.io/github/")
-github install basedosdados/stata-package
+net install basedosdados, from("https://raw.githubusercontent.com/basedosdados/stata-package/master/")
 ```
 
 # 3. Sintaxe
